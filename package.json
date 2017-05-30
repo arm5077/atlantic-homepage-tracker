@@ -1,0 +1,19 @@
+{
+  "name": "homepage-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.4.1",
+    "cheerio": "^1.0.0-rc.1",
+    "dotenv": "^4.0.0",
+    "moment-timezone": "^0.5.13",
+    "mongodb": "^2.2.27",
+    "request": "^2.81.0"
+  }
+}
