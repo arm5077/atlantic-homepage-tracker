@@ -32,7 +32,7 @@ var positions = [
 ]  
 
 // Connect to Mongo database
-var client = MongoClient.connect( process.env.MONGO_URL || 'mongodb://localhost:27017/homepageTracker')
+var client = MongoClient.connect( process.env.MONGODB_URI || 'mongodb://localhost:27017/homepageTracker')
   .then(function(database){
     db = database;
     return db.collection('positions')
