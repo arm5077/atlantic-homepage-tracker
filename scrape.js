@@ -24,10 +24,6 @@ var positions = [
   {
     name: 'featured',
     selector: '.c-hp-featured__link'
-  },
-  {
-    name: 'news',
-    selector: '.c-hp-news__link'
   }
 ]  
 
