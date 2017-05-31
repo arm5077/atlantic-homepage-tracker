@@ -32,7 +32,7 @@ app.get('/api/today', function(req, res){
               as: "story",
               cond: { 
                 $and: [
-                  { $gte: [ '$$story.newStart', moment().tz("America/New_York").startOf('day').toDate() ] },
+                  { $gte: [ '$$story.start', moment().tz("America/New_York").startOf('day').toDate() ] },
                   { $lte: [ '$$story.end', moment().tz("America/New_York").endOf('day').format() ] }
                 ]                
               }
