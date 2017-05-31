@@ -13,7 +13,7 @@ MongoClient.connect( process.env.MONGODB_URI || 'mongodb://localhost:27017/homep
     db = result
   });
 
-app.get('/', function(req, res){ 
+app.get('/api/today', function(req, res){ 
 
   console.log(moment().tz("America/New_York").startOf('day').format());
 
