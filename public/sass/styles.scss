@@ -100,12 +100,12 @@ body {
     font-weight: 400;
     color: inherit;
     width: 400px;
-    overflow: hidden;
     margin-right: 20px;
-
     width: 50px;
     color: #666;
     margin-right: 20px;
+    position: relative;
+    vertical-align: top;
   }
  
   .timeline {
@@ -142,6 +142,27 @@ body {
   }
   
   
+}
+
+.story:first-of-type .time-elapsed:before {
+  content: "Time in position";
+      position: absolute;
+      color: #666;
+      top: -38px;
+      font-size: 11px;
+      text-transform: uppercase;
+      text-align: left;
+}
+
+.story:first-of-type .timeline:before {
+  content: "Timeline of day";
+      position: absolute;
+      color: #666;
+      top: -45px;
+      font-size: 11px;
+      text-transform: uppercase;
+      text-align: left;
+      width: 50px;
 }
 
 .story:first-of-type .label:nth-child(2n-1) {
