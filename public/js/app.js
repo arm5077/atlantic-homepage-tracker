@@ -6,7 +6,8 @@ import '../sass/styles.scss'
 const preferred_order = ['lead', 'offlead', 'filmstrip', 'featured'];
 
 // See if URL has a date parameter
-var thisDate = getURLParameter('date') || moment();
+var thisDate = getURLParameter('date') || moment().format("Y-MM-DD");
+
 var dateParameter = (getURLParameter('date')) ? '?date=' + getURLParameter('date') : '';
 
 
@@ -16,6 +17,17 @@ var scale = d3.scaleTime()
   .domain([ moment(thisDate).tz('America/New_York').startOf('day').toDate(), moment(thisDate).tz('America/New_York').endOf('day').toDate() ])
   .range([0,100]);
 
+content.append('div')
+  .classed('headline', true)
+  .html("The Atlantic homepage, as of ")
+.append('input')
+  .attr('type', 'date')
+  .attr('value', thisDate )
+  .attr('max', moment().format('Y-MM-DD'))
+  .on('change', function(){
+    window.location.href = '/?date=' + moment(d3.event.target.value).format('Y-MM-DD')
+  })
+  
 // Get list of the latest
 d3.json('/api/day' + dateParameter, function(err, data){
   if(err) throw err;

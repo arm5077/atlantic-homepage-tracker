@@ -10,6 +10,24 @@ body {
   margin: auto;
 }
 
+.headline {
+  font-size: 35px;
+  margin-bottom: 30px;
+  line-height: 1;
+
+  input {
+    @extend .headline;
+    font-family: inherit;
+    border: 0;
+    color: #D0011B;
+    background-color: none;
+    margin: 0;
+  }
+
+}
+
+
+
 .position {
   margin-bottom: 70px;
   position: relative;

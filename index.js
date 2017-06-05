@@ -49,8 +49,8 @@ app.get('/api/day', function(req, res){
                   },*/
                   {
                     $and: [
-                      { $gte: [ '$$story.start', moment(daySelected).tz("America/New_York").startOf('day').subtract(1, 'day').toDate() ] },
-                      { $lte: [ '$$story.end', moment(daySelected).tz("America/New_York").endOf('day').add(1, 'day').toDate() ] }
+                      { $gte: [ '$$story.start', moment(daySelected).tz("America/New_York").startOf('day').subtract(3, 'day').toDate() ] },
+                      { $lte: [ '$$story.end', moment(daySelected).tz("America/New_York").endOf('day').add(3, 'day').toDate() ] }
                     ]                
                   }
                 ]
@@ -73,8 +73,11 @@ app.get('/api/day', function(req, res){
     // Only keep stories that were published today or haven't been taken off the site yet
     responseObject.forEach( position => {
       position.stories = position.stories.filter(story => {
-        return moment(story.start).tz('America/New_York').isBefore( moment(daySelected).tz('America/New_York').endOf('day') )
-          && moment(story.end || moment() ).tz('America/New_York').isAfter( moment(daySelected).tz('America/New_York').startOf('day') )
+        return (moment(story.start).tz('America/New_York').isBefore( moment(daySelected).tz('America/New_York').endOf('day') )
+          && moment(story.end || moment() ).tz('America/New_York').isAfter( moment(daySelected).tz('America/New_York').startOf('day') ))
+        || ( moment(daySelected).tz('America/New_York').startOf('day').isBefore( moment(story.end || moment() ).tz('America/New_York') )
+          && moment(daySelected).tz('America/New_York').endOf('day').isAfter( moment(story.start).tz('America/New_York') ))
+          
         
         /*return !story.end || 
           moment(story.end).tz("America/New_York").date() == (daySelected).tz("America/New_York").date() || 
