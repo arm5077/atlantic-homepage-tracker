@@ -9,7 +9,7 @@ var $ = null,
   db = null;
   
 var positions = [
-  {
+ {
     name: 'lead',
     selector: 'a.c-hp-lead__link'
   },
@@ -112,17 +112,21 @@ async.series([
               }
               // If they don't match, this fella is out of date! let's end him
               client.then(function(collection){
-                 collection.update(
+
+                 return collection.update(
                   { name: position.name, 
                     slot: i+1, 
                     'stories.url': match.url, 
-                    'stories.start': match.start 
+                    'stories.start': { $gte: moment(match.start).tz('America/New_York').toDate() }
                   },
                   { $set: { 'stories.$.end': moment().tz('America/New_York').toDate() } }
                 )
               }).then(function(){
                 console.log(`Put a lid on ${match.title}!`);
                 return nextMatch();
+              }).
+              catch(function(err){
+                if(err) throw err;
               })
             }, 
             // Now that that's over with, let's check and see if a headline match was found. If not, we'll drop this bad boy in.
