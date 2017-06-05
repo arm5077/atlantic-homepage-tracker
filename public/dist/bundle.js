@@ -32536,7 +32536,7 @@ exports = module.exports = __webpack_require__(120)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  font-family: -apple-system, BlinkMacSystemFont, Roboto, \"Helvetica Neue\", \"Segoe UI\", Arial, sans-serif;\n  color: #333; }\n\n#content {\n  max-width: 791px;\n  margin: auto; }\n\n.headline, .headline input {\n  font-size: 35px;\n  margin-bottom: 30px;\n  line-height: 1; }\n  .headline input {\n    font-family: inherit;\n    border: 0;\n    color: #D0011B;\n    background-color: none;\n    margin: 0; }\n\n.position {\n  margin-bottom: 70px;\n  position: relative; }\n  .position h1 {\n    margin: 0 0 10px 0;\n    font-size: 22px; }\n  .position .current-time {\n    position: absolute;\n    top: 0;\n    right: 0;\n    width: 300px; }\n    .position .current-time .line {\n      position: absolute;\n      top: 20px;\n      border-right: 1px dotted #999;\n      height: 100%;\n      width: 1px; }\n      .position .current-time .line .label {\n        font-size: 10px;\n        position: absolute;\n        top: -13px;\n        left: -8px;\n        color: #222; }\n\n.story {\n  margin-bottom: 30px; }\n  .story .title, .story .time-elapsed {\n    display: inline-block;\n    font-size: 18px;\n    font-weight: 400;\n    text-decoration: none;\n    color: inherit;\n    width: 400px;\n    overflow: hidden;\n    white-space: nowrap;\n    margin-right: 20px; }\n  .story .title:hover, .story .time-elapsed:hover {\n    text-decoration: underline; }\n  .story .time-elapsed {\n    display: inline-block;\n    width: 50px;\n    color: #666;\n    text-decoration: none !important; }\n  .story .timeline {\n    width: 300px;\n    position: relative;\n    height: 6px;\n    display: inline-block;\n    top: -8px; }\n    .story .timeline .background-line {\n      width: 100%;\n      background-color: #eee;\n      height: 100%;\n      overflow: hidden;\n      position: relative; }\n    .story .timeline .segment {\n      position: absolute;\n      top: 0;\n      height: 100%;\n      background-color: #D0011B; }\n    .story .timeline .label {\n      font-weight: 300;\n      font-size: 10px;\n      color: #999;\n      position: absolute;\n      top: -13px;\n      margin-left: -10px; }\n\n.story:first-of-type .label:nth-child(2n-1) {\n  display: none; }\n\n.hidden {\n  display: none; }\n", ""]);
+exports.push([module.i, "body {\n  font-family: -apple-system, BlinkMacSystemFont, Roboto, \"Helvetica Neue\", \"Segoe UI\", Arial, sans-serif;\n  color: #333; }\n\n#content {\n  max-width: 791px;\n  margin: auto; }\n\n.headline, .headline input {\n  font-size: 35px;\n  margin-bottom: 30px;\n  line-height: 1; }\n  .headline input {\n    font-family: inherit;\n    border: 0;\n    color: #D0011B;\n    background-color: none;\n    margin: 0; }\n\n.position {\n  margin-bottom: 70px;\n  position: relative; }\n  .position h1 {\n    margin: 0 0 10px 0;\n    font-size: 22px; }\n  .position .current-time {\n    position: absolute;\n    top: 0;\n    right: 0;\n    width: 300px; }\n    .position .current-time .line {\n      position: absolute;\n      top: 20px;\n      border-right: 1px dotted #999;\n      height: 100%;\n      width: 1px; }\n      .position .current-time .line .label {\n        font-size: 10px;\n        position: absolute;\n        top: -13px;\n        left: -8px;\n        color: #222; }\n\n.story {\n  margin-bottom: 30px; }\n  .story .title {\n    display: inline-block;\n    font-size: 18px;\n    font-weight: 400;\n    text-decoration: none;\n    color: inherit;\n    width: 400px;\n    overflow: hidden;\n    white-space: nowrap;\n    margin-right: 20px;\n    position: relative; }\n  .story .title:after {\n    content: \" \";\n    display: block;\n    height: 100%;\n    position: absolute;\n    right: 0;\n    top: 0;\n    width: 30px;\n    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, white 100%);\n    /* Chrome10-25,Safari5.1-6 */\n    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, white 100%);\n    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }\n  .story .title:hover {\n    text-decoration: underline; }\n  .story .time-elapsed {\n    display: inline-block;\n    font-size: 18px;\n    font-weight: 400;\n    color: inherit;\n    width: 400px;\n    overflow: hidden;\n    margin-right: 20px;\n    width: 50px;\n    color: #666;\n    margin-right: 20px; }\n  .story .timeline {\n    width: 300px;\n    position: relative;\n    height: 6px;\n    display: inline-block;\n    top: -8px; }\n    .story .timeline .background-line {\n      width: 100%;\n      background-color: #eee;\n      height: 100%;\n      overflow: hidden;\n      position: relative; }\n    .story .timeline .segment {\n      position: absolute;\n      top: 0;\n      height: 100%;\n      background-color: #D0011B; }\n    .story .timeline .label {\n      font-weight: 300;\n      font-size: 10px;\n      color: #999;\n      position: absolute;\n      top: -13px;\n      margin-left: -10px; }\n\n.story:first-of-type .label:nth-child(2n-1) {\n  display: none; }\n\n.hidden {\n  display: none; }\n\n@media (max-width: 750px) {\n  .position .current-time {\n    display: none; }\n  .story .title {\n    width: auto;\n    white-space: normal;\n    margin-bottom: 5px; }\n  .story .title:after {\n    display: none; }\n  .story .timeline {\n    width: 100%; }\n  .story .time-elapsed {\n    display: block; } }\n", ""]);
 
 // exports
 
@@ -34614,81 +34614,90 @@ content.append('div')
     window.location.href = '/?date=' + __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(__WEBPACK_IMPORTED_MODULE_0_d3__["event"].target.value).format('Y-MM-DD')
   })
   
-// Get list of the latest
-__WEBPACK_IMPORTED_MODULE_0_d3__["json"]('/api/day' + dateParameter, function(err, data){
-  if(err) throw err;
+  buildList();
   
-  data.sort(function(a,b){ return a.slot - b.slot });
-  data.sort(function(a,b){ return preferred_order.indexOf(a.name) - preferred_order.indexOf(b.name) });
+
+function buildList(){
   
-  // Build position sections
-  var position = content.selectAll('.position')
-    .data(data).enter()
-  .append('div')
-    .classed('position', true)
+  __WEBPACK_IMPORTED_MODULE_0_d3__["selectAll"]('.position').remove();
   
-  position.append('h1')
-    .html(function(d){ return properCase(d.name) + ( (d.slot != 1) ? " " + d.slot : "" )})
+  // Get list of the latest
+  __WEBPACK_IMPORTED_MODULE_0_d3__["json"]('/api/day' + dateParameter, function(err, data){
+    if(err) throw err;
   
-  var story = position.selectAll('.story')
-    .data(function(d){ return d.stories }).enter()
-  .append('div')
-    .classed('story', true)
+    data.sort(function(a,b){ return a.slot - b.slot });
+    data.sort(function(a,b){ return preferred_order.indexOf(a.name) - preferred_order.indexOf(b.name) });
   
-  story.append('a')
-    .classed('title', true)
-    .text(function(d){ return d.title })
-    .attr('href', function(d){ return d.url })
+    // Build position sections
+    var position = content.selectAll('.position')
+      .data(data).enter()
+    .append('div')
+      .classed('position', true)
   
-  story.append('div')
-    .classed('time-elapsed', true)
-    .text(function(d){
-      if( !d.end )
-        d.end = __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()().tz('America/New_York');
-      var duration = __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default.a.duration( __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(d.end).tz('America/New_York').diff( __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(d.start).tz('America/New_York') ))
-      return lpad( Math.floor(duration.asHours())) + ":" + lpad(duration.minutes())  
+    position.append('h1')
+      .html(function(d){ return properCase(d.name) + ( (d.slot != 1) ? " " + d.slot : "" )})
+  
+    var story = position.selectAll('.story')
+      .data(function(d){ return d.stories }).enter()
+    .append('div')
+      .classed('story', true)
+  
+    story.append('a')
+      .classed('title', true)
+      .text(function(d){ return d.title })
+      .attr('target', 'blank')
+      .attr('href', function(d){ return d.url })
+  
+    story.append('div')
+      .classed('time-elapsed', true)
+      .text(function(d){
+        if( !d.end )
+          d.end = __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()().tz('America/New_York');
+        var duration = __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default.a.duration( __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(d.end).tz('America/New_York').diff( __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(d.start).tz('America/New_York') ))
+        return lpad( Math.floor(duration.asHours())) + ":" + lpad(duration.minutes())  
+      })
+    
+    var timeline = story.append('div')
+      .classed('timeline', true)
+    
+    var segment = timeline.append('div')
+      .classed('background-line', true)
+    .append('div')
+      .classed('segment', true)
+      .style('left', function(d){  return scale( __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(d.start) ) + "%" })
+      .style('width', function(d){ return scale( __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(d.end)) - scale(__WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(d.start)) + '%' })
+    
+    timeline.selectAll('.label')
+      .data(function(d){ return [d.start, d.end] }).enter()
+    .append('div')
+      .classed('label', true)
+    .html(function(d){
+      return __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(d).tz('America/New_York').format('h:mm')
     })
-    
-  var timeline = story.append('div')
-    .classed('timeline', true)
-    
-  var segment = timeline.append('div')
-    .classed('background-line', true)
-  .append('div')
-    .classed('segment', true)
-    .style('left', function(d){  return scale( __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(d.start) ) + "%" })
-    .style('width', function(d){ return scale( __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(d.end)) - scale(__WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(d.start)) + '%' })
-    
-  timeline.selectAll('.label')
-    .data(function(d){ return [d.start, d.end] }).enter()
-  .append('div')
-    .classed('label', true)
-  .html(function(d){
-    return __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(d).tz('America/New_York').format('h:mm')
-  })
-  .style('left', function(d){
-    return scale(__WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(d).tz('America/New_York')) + '%'
-  })
-  .classed('hidden', function(d){
-    return scale(__WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(d).tz('America/New_York')) < 0
-  })
+    .style('left', function(d){
+      return scale(__WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(d).tz('America/New_York')) + '%'
+    })
+    .classed('hidden', function(d){
+      return scale(__WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(d).tz('America/New_York')) < 0
+    })
   
-  // Add current-time scales
-  position.append('div')
-    .classed('current-time', true)
-    .style('height', function(d){
-      return this.parentNode.clientHeight + 'px'  
-    })
-  .append('div')
-    .classed('line', true)
-    .style('left', function(d){ 
-      return scale( __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()().tz("America/New_York").toDate() ) + '%' 
-    })
-  .append('div')
-    .classed('label', true)
-    .text( __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()().tz('America/New_York').format('h:mm') )
+    // Add current-time scales
+    position.append('div')
+      .classed('current-time', true)
+      .style('height', function(d){
+        return this.parentNode.clientHeight + 'px'  
+      })
+    .append('div')
+      .classed('line', true)
+      .style('left', function(d){ 
+        return scale( __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()().tz("America/New_York").toDate() ) + '%' 
+      })
+    .append('div')
+      .classed('label', true)
+      .text( __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()().tz('America/New_York').format('h:mm') )
     
-})
+  })
+}  
 
 function properCase(word){
   return word.slice(0,1).toUpperCase() + word.slice(1, word.length)
