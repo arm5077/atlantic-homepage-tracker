@@ -5,13 +5,19 @@ import '../sass/styles.scss'
 
 const preferred_order = ['lead', 'offlead', 'filmstrip', 'featured'];
 
+// See if URL has a date parameter
+var thisDate = getURLParameter('date') || moment();
+var dateParameter = (getURLParameter('date')) ? '?date=' + getURLParameter('date') : '';
+
+
+
 var content = d3.select('#content');
 var scale = d3.scaleTime()
-  .domain([ moment().tz('America/New_York').startOf('day').toDate(), moment().tz('America/New_York').endOf('day').toDate() ])
+  .domain([ moment(thisDate).tz('America/New_York').startOf('day').toDate(), moment(thisDate).tz('America/New_York').endOf('day').toDate() ])
   .range([0,100]);
 
 // Get list of the latest
-d3.json('/api/today', function(err, data){
+d3.json('/api/day' + dateParameter, function(err, data){
   if(err) throw err;
   
   data.sort(function(a,b){ return a.slot - b.slot });
@@ -24,7 +30,7 @@ d3.json('/api/today', function(err, data){
     .classed('position', true)
   
   position.append('h1')
-    .html(function(d){ return properCase(d.name) })
+    .html(function(d){ return properCase(d.name) + ( (d.slot != 1) ? " " + d.slot : "" )})
   
   var story = position.selectAll('.story')
     .data(function(d){ return d.stories }).enter()
@@ -42,7 +48,7 @@ d3.json('/api/today', function(err, data){
       if( !d.end )
         d.end = moment().tz('America/New_York');
       var duration = moment.duration( moment(d.end).tz('America/New_York').diff( moment(d.start).tz('America/New_York') ))
-      return lpad(duration.hours()) + ":" + lpad(duration.minutes())  
+      return lpad( Math.floor(duration.asHours())) + ":" + lpad(duration.minutes())  
     })
     
   var timeline = story.append('div')
@@ -68,6 +74,21 @@ d3.json('/api/today', function(err, data){
   .classed('hidden', function(d){
     return scale(moment(d).tz('America/New_York')) < 0
   })
+  
+  // Add current-time scales
+  position.append('div')
+    .classed('current-time', true)
+    .style('height', function(d){
+      return this.parentNode.clientHeight + 'px'  
+    })
+  .append('div')
+    .classed('line', true)
+    .style('left', function(d){ 
+      return scale( moment().tz("America/New_York").toDate() ) + '%' 
+    })
+  .append('div')
+    .classed('label', true)
+    .text( moment().tz('America/New_York').format('h:mm') )
     
 })
 
@@ -77,4 +98,8 @@ function properCase(word){
 
 function lpad(number){
   return("00" + number).substr(-2,2)
+}
+
+function getURLParameter(name) {
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
 }

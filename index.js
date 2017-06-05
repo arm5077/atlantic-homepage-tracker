@@ -13,10 +13,16 @@ MongoClient.connect( process.env.MONGODB_URI || 'mongodb://localhost:27017/homep
     db = result
   });
 
-app.get('/api/today', function(req, res){ 
-
-  console.log(moment().tz("America/New_York").startOf('day').format());
+app.get('/api/day', function(req, res){ 
   var responseObject = [];
+
+  // Check to see if a date was specified 
+  if( req.query.date )
+    daySelected = moment(req.query.date).tz("America/New_York").toDate()
+  else 
+    daySelected = new Date()
+
+    console.log(moment(daySelected).tz("America/New_York").endOf('day').toDate());
 
   db.collection('positions').aggregate(
     [
@@ -33,18 +39,18 @@ app.get('/api/today', function(req, res){
               as: "story",
               cond: { 
                 $or: [
-                  {
+    /*              {
                     $not: [
                       {
                         $ifNull: ['$$story.end', false]
                       }
                       
                     ]
-                  },
+                  },*/
                   {
                     $and: [
-                      { $gte: [ '$$story.start', moment().tz("America/New_York").startOf('day').subtract(1, 'day').toDate() ] },
-                      { $lte: [ '$$story.end', moment().tz("America/New_York").endOf('day').toDate() ] }
+                      { $gte: [ '$$story.start', moment(daySelected).tz("America/New_York").startOf('day').subtract(1, 'day').toDate() ] },
+                      { $lte: [ '$$story.end', moment(daySelected).tz("America/New_York").endOf('day').add(1, 'day').toDate() ] }
                     ]                
                   }
                 ]
@@ -67,7 +73,12 @@ app.get('/api/today', function(req, res){
     // Only keep stories that were published today or haven't been taken off the site yet
     responseObject.forEach( position => {
       position.stories = position.stories.filter(story => {
-        return !story.end || moment(story.end).tz("America/New_York").date() == moment().tz("America/New_York").date()
+        return moment(story.start).tz('America/New_York').isBefore( moment(daySelected).tz('America/New_York').endOf('day') )
+          && moment(story.end || moment() ).tz('America/New_York').isAfter( moment(daySelected).tz('America/New_York').startOf('day') )
+        
+        /*return !story.end || 
+          moment(story.end).tz("America/New_York").date() == (daySelected).tz("America/New_York").date() || 
+          moment(story.start).tz("America/New_York").date() == (daySelected).tz("America/New_York").date()*/
       })
     })
   })

@@ -32536,7 +32536,7 @@ exports = module.exports = __webpack_require__(120)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  font-family: -apple-system, BlinkMacSystemFont, Roboto, \"Helvetica Neue\", \"Segoe UI\", Arial, sans-serif;\n  color: #333; }\n\n.position {\n  margin-bottom: 20px; }\n  .position h1 {\n    margin: 0 0 10px 0;\n    font-size: 22px; }\n\n.story {\n  margin-bottom: 20px; }\n  .story .title, .story .time-elapsed {\n    display: inline-block;\n    font-size: 18px;\n    font-weight: 400;\n    text-decoration: none;\n    color: inherit;\n    width: 400px;\n    overflow: hidden;\n    white-space: nowrap;\n    margin-right: 10px; }\n  .story .time-elapsed {\n    display: inline-block;\n    width: auto;\n    color: #666; }\n  .story .timeline {\n    width: 300px;\n    position: relative;\n    height: 6px;\n    display: inline-block;\n    top: -8px; }\n    .story .timeline .background-line {\n      width: 100%;\n      background-color: #eee;\n      height: 100%;\n      overflow: hidden;\n      position: relative; }\n    .story .timeline .segment {\n      position: absolute;\n      top: 0;\n      height: 100%;\n      background-color: #D0011B; }\n    .story .timeline .label {\n      font-weight: 300;\n      font-size: 10px;\n      color: #999;\n      position: absolute;\n      top: -13px;\n      margin-left: -10px; }\n\n.hidden {\n  display: none; }\n", ""]);
+exports.push([module.i, "body {\n  font-family: -apple-system, BlinkMacSystemFont, Roboto, \"Helvetica Neue\", \"Segoe UI\", Arial, sans-serif;\n  color: #333; }\n\n#content {\n  max-width: 791px;\n  margin: auto; }\n\n.position {\n  margin-bottom: 70px;\n  position: relative; }\n  .position h1 {\n    margin: 0 0 10px 0;\n    font-size: 22px; }\n  .position .current-time {\n    position: absolute;\n    top: 0;\n    right: 0;\n    width: 300px; }\n    .position .current-time .line {\n      position: absolute;\n      top: 20px;\n      border-right: 1px dotted #999;\n      height: 100%;\n      width: 1px; }\n      .position .current-time .line .label {\n        font-size: 10px;\n        position: absolute;\n        top: -13px;\n        left: -8px;\n        color: #222; }\n\n.story {\n  margin-bottom: 30px; }\n  .story .title, .story .time-elapsed {\n    display: inline-block;\n    font-size: 18px;\n    font-weight: 400;\n    text-decoration: none;\n    color: inherit;\n    width: 400px;\n    overflow: hidden;\n    white-space: nowrap;\n    margin-right: 20px; }\n  .story .title:hover, .story .time-elapsed:hover {\n    text-decoration: underline; }\n  .story .time-elapsed {\n    display: inline-block;\n    width: 50px;\n    color: #666;\n    text-decoration: none !important; }\n  .story .timeline {\n    width: 300px;\n    position: relative;\n    height: 6px;\n    display: inline-block;\n    top: -8px; }\n    .story .timeline .background-line {\n      width: 100%;\n      background-color: #eee;\n      height: 100%;\n      overflow: hidden;\n      position: relative; }\n    .story .timeline .segment {\n      position: absolute;\n      top: 0;\n      height: 100%;\n      background-color: #D0011B; }\n    .story .timeline .label {\n      font-weight: 300;\n      font-size: 10px;\n      color: #999;\n      position: absolute;\n      top: -13px;\n      margin-left: -10px; }\n\n.story:first-of-type .label:nth-child(2n-1) {\n  display: none; }\n\n.hidden {\n  display: none; }\n", ""]);
 
 // exports
 
@@ -34591,13 +34591,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 const preferred_order = ['lead', 'offlead', 'filmstrip', 'featured'];
 
+// See if URL has a date parameter
+var thisDate = getURLParameter('date') || __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()();
+var dateParameter = (getURLParameter('date')) ? '?date=' + getURLParameter('date') : '';
+
+
+
 var content = __WEBPACK_IMPORTED_MODULE_0_d3__["select"]('#content');
 var scale = __WEBPACK_IMPORTED_MODULE_0_d3__["scaleTime"]()
-  .domain([ __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()().tz('America/New_York').startOf('day').toDate(), __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()().tz('America/New_York').endOf('day').toDate() ])
+  .domain([ __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(thisDate).tz('America/New_York').startOf('day').toDate(), __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(thisDate).tz('America/New_York').endOf('day').toDate() ])
   .range([0,100]);
 
 // Get list of the latest
-__WEBPACK_IMPORTED_MODULE_0_d3__["json"]('/api/today', function(err, data){
+__WEBPACK_IMPORTED_MODULE_0_d3__["json"]('/api/day' + dateParameter, function(err, data){
   if(err) throw err;
   
   data.sort(function(a,b){ return a.slot - b.slot });
@@ -34610,7 +34616,7 @@ __WEBPACK_IMPORTED_MODULE_0_d3__["json"]('/api/today', function(err, data){
     .classed('position', true)
   
   position.append('h1')
-    .html(function(d){ return properCase(d.name) })
+    .html(function(d){ return properCase(d.name) + ( (d.slot != 1) ? " " + d.slot : "" )})
   
   var story = position.selectAll('.story')
     .data(function(d){ return d.stories }).enter()
@@ -34628,7 +34634,7 @@ __WEBPACK_IMPORTED_MODULE_0_d3__["json"]('/api/today', function(err, data){
       if( !d.end )
         d.end = __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()().tz('America/New_York');
       var duration = __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default.a.duration( __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(d.end).tz('America/New_York').diff( __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(d.start).tz('America/New_York') ))
-      return lpad(duration.hours()) + ":" + lpad(duration.minutes())  
+      return lpad( Math.floor(duration.asHours())) + ":" + lpad(duration.minutes())  
     })
     
   var timeline = story.append('div')
@@ -34654,6 +34660,21 @@ __WEBPACK_IMPORTED_MODULE_0_d3__["json"]('/api/today', function(err, data){
   .classed('hidden', function(d){
     return scale(__WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()(d).tz('America/New_York')) < 0
   })
+  
+  // Add current-time scales
+  position.append('div')
+    .classed('current-time', true)
+    .style('height', function(d){
+      return this.parentNode.clientHeight + 'px'  
+    })
+  .append('div')
+    .classed('line', true)
+    .style('left', function(d){ 
+      return scale( __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()().tz("America/New_York").toDate() ) + '%' 
+    })
+  .append('div')
+    .classed('label', true)
+    .text( __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()().tz('America/New_York').format('h:mm') )
     
 })
 
@@ -34663,6 +34684,10 @@ function properCase(word){
 
 function lpad(number){
   return("00" + number).substr(-2,2)
+}
+
+function getURLParameter(name) {
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
 }
 
 /***/ })

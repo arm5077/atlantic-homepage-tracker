@@ -1,14 +1,46 @@
+$timeline-width: 300px;
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
   color: #333;
 }
 
+#content {
+  max-width: 791px;
+  margin: auto;
+}
+
 .position {
-  margin-bottom: 20px;
+  margin-bottom: 70px;
+  position: relative;
 
   h1 {
     margin: 0 0 10px 0;
     font-size: 22px;
+  }
+
+  .current-time {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: $timeline-width;
+
+    .line {
+      position: absolute;
+      top: 20px;
+      border-right: 1px dotted #999;
+      height: 100%;
+      width: 1px;
+      
+      .label {
+        font-size: 10px;
+        position: absolute;
+        top: -13px;
+        left: -8px;
+        color: #222;
+      }
+    }
+
   }
 
 
@@ -17,7 +49,7 @@ body {
 
 .story {
   
-  margin-bottom: 20px;
+  margin-bottom: 30px;
  
   .title {
     display: inline-block;
@@ -28,18 +60,23 @@ body {
     width: 400px;
     overflow: hidden;
     white-space: nowrap;
-    margin-right: 10px;
+    margin-right: 20px;
+  }
+  
+  .title:hover {
+    text-decoration: underline;
   }
   
   .time-elapsed {
     @extend .title;
     display: inline-block;
-    width: auto;
+    width: 50px;
     color: #666;
+    text-decoration: none !important;
   }
  
   .timeline {
-    width: 300px;
+    width: $timeline-width;
     position: relative;
     height: 6px;
     display: inline-block;
@@ -72,6 +109,10 @@ body {
   }
   
   
+}
+
+.story:first-of-type .label:nth-child(2n-1) {
+  display: none;
 }
 
 .hidden {
