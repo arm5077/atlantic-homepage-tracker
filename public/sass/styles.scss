@@ -24,6 +24,20 @@ body {
     margin: 0;
   }
 
+  .navButton {
+    display: inline-block;
+    font-size: 14px;
+    margin-right: 20px;
+    vertical-align: top;
+    text-decoration: underline;
+    transition: .3s all;
+  }
+  
+  .navButton:hover {
+    color: #D0011B;
+    cursor: pointer;
+  }
+
 }
 
 .position {
@@ -170,7 +184,7 @@ body {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 @media (max-width: 750px) {

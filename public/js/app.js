@@ -17,10 +17,11 @@ var scale = d3.scaleTime()
   .domain([ moment(thisDate).tz('America/New_York').startOf('day').toDate(), moment(thisDate).tz('America/New_York').endOf('day').toDate() ])
   .range([0,100]);
 
-content.append('div')
+var headline = content.append('div')
   .classed('headline', true)
   .html("The Atlantic homepage, as of ")
-.append('input')
+
+headline.append('input')
   .attr('type', 'date')
   .attr('value', thisDate )
   .attr('max', moment().format('Y-MM-DD'))
@@ -28,6 +29,22 @@ content.append('div')
     window.location.href = '/?date=' + moment(d3.event.target.value).format('Y-MM-DD')
   })
   
+var nav = headline.append('div')
+  .classed('nav', true)
+
+nav.selectAll('.navButton')
+  .data([
+    { text: 'go back one day', direction: -1, test: function(){ return false} },
+    { text: 'go forward one day', direction: 1, test: function(date){ return thisDate === moment().format('Y-MM-DD') } }
+  ]).enter()
+.append('div')
+  .classed('navButton', true)
+  .classed('hidden', function(d){ return d.test( thisDate ) })
+  .text(function(d){ return d.text })
+  .on('click', function(d){
+    window.location.href = '/?date=' + moment( thisDate ).add( d.direction, 'day' ).format('Y-MM-DD')
+  })
+
   buildList();
   
 
