@@ -18,7 +18,7 @@ app.get('/api/day', function(req, res){
 
   // Check to see if a date was specified 
   if( req.query.date )
-    daySelected = moment(req.query.date).tz("America/New_York").toDate()
+    daySelected = moment.tz(req.query.date, "America/New_York").toDate()
   else 
     daySelected = moment().tz('America/New_York').toDate()
 
