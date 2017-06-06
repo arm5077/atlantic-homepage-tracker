@@ -20,9 +20,8 @@ app.get('/api/day', function(req, res){
   if( req.query.date )
     daySelected = moment(req.query.date).tz("America/New_York").toDate()
   else 
-    daySelected = new Date()
+    daySelected = moment().tz('America/New_York').toDate()
 
-    console.log(moment(daySelected).tz("America/New_York").endOf('day').toDate());
 
   db.collection('positions').aggregate(
     [
