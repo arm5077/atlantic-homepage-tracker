@@ -15,7 +15,7 @@ var positions = [
   },
   {
     name: 'filmstrip',
-    selector: 'h3 a.c-hp-filmstrip__link'
+    selector: 'h2 a.c-hp-filmstrip__link'
   },
   {
     name: 'offlead',

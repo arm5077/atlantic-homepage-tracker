@@ -212,7 +212,17 @@ body {
     
     .time-elapsed {
       display: block;
+      margin-bottom: 15px;
     }
     
+    .time-elapsed:before {
+      display: none;
+    }
   }
+  
+  .story:first-of-type .timeline:before {
+    display: none;
+  }
+  
+  
 }
