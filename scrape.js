@@ -9,21 +9,65 @@ var $ = null,
   db = null;
   
 var positions = [
- {
-    name: 'lead',
-    selector: 'a.c-hp-lead__link'
+  {
+    name: 'offlead1',
+    selector: 'article:nth-child(1) .c-offlede__hed-link'
   },
   {
-    name: 'filmstrip',
-    selector: 'h2 a.c-hp-filmstrip__link'
+     name: 'lead',
+     selector: '.c-cover-story__hed-link'
+   },
+  {
+    name: 'offlead2',
+    selector: 'article:nth-child(2) .c-offlede__hed-link'
   },
   {
-    name: 'offlead',
-    selector: '.c-hp-offlead__link--hed'
+    name: 'filmstrip1',
+    selector: 'article.c-story-strip--stack:nth-child(1) .c-story-strip__hed-link'
   },
   {
-    name: 'featured',
-    selector: '.c-hp-featured__link'
+    name: 'filmstrip2',
+    selector: 'article.c-story-strip--stack:nth-child(2) .c-story-strip__hed-link'
+  },
+  {
+    name: 'filmstrip3',
+    selector: 'article.c-story-strip--stack:nth-child(3) .c-story-strip__hed-link'
+  },
+  {
+    name: 'filmstrip4',
+    selector: 'article.c-story-strip--stack:nth-child(4) .c-story-strip__hed-link'
+  },
+  {
+    name: 'belt1',
+    selector: 'article.c-card--:nth-child(1) .c-card__hed'
+  },  
+  {
+    name: 'belt2',
+    selector: 'article.c-card--:nth-child(2) .c-card__hed'
+  },
+  {
+    name: 'belt3',
+    selector: 'article.c-card--:nth-child(3) .c-card__hed'
+  },  
+  {
+    name: 'belt4',
+    selector: 'article.c-card--:nth-child(4) .c-card__hed'
+  },  
+  {
+    name: 'doublewide',
+    selector: '.c-feature .c-feature__hed-link'
+  },
+  {
+    name: 'chiclet1',
+    selector: 'article.c-story-strip--off-off-lede-stack:nth-child(1) .c-story-strip__hed-link'
+  },
+  {
+    name: 'chiclet2',
+    selector: 'article.c-story-strip--off-off-lede-stack:nth-child(2) .c-story-strip__hed-link'
+  },
+  {
+    name: 'chiclet3',
+    selector: 'article.c-story-strip--bottom-stack .c-story-strip__hed-link'
   }
 ]  
 
