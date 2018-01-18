@@ -10,63 +10,31 @@ var $ = null,
   
 var positions = [
   {
-    name: 'offlead1',
-    selector: 'article:nth-child(1) .c-offlede__hed-link'
+    name: 'Lead',
+    selector: '.c-cover-story__hed-link'
   },
   {
-     name: 'lead',
-     selector: '.c-cover-story__hed-link'
-   },
-  {
-    name: 'offlead2',
-    selector: 'article:nth-child(2) .c-offlede__hed-link'
+    name: 'Offlead',
+    selector: 'article .c-offlede__hed-link'
   },
   {
-    name: 'filmstrip1',
-    selector: 'article.c-story-strip--stack:nth-child(1) .c-story-strip__hed-link'
+    name: 'Filmstrip',
+    selector: 'article.c-story-strip--stack .c-story-strip__hed-link'
   },
   {
-    name: 'filmstrip2',
-    selector: 'article.c-story-strip--stack:nth-child(2) .c-story-strip__hed-link'
-  },
+    name: 'Belt',
+    selector: 'article.c-card-- .c-card__hed'
+  },   
   {
-    name: 'filmstrip3',
-    selector: 'article.c-story-strip--stack:nth-child(3) .c-story-strip__hed-link'
-  },
-  {
-    name: 'filmstrip4',
-    selector: 'article.c-story-strip--stack:nth-child(4) .c-story-strip__hed-link'
-  },
-  {
-    name: 'belt1',
-    selector: 'article.c-card--:nth-child(1) .c-card__hed'
-  },  
-  {
-    name: 'belt2',
-    selector: 'article.c-card--:nth-child(2) .c-card__hed'
-  },
-  {
-    name: 'belt3',
-    selector: 'article.c-card--:nth-child(3) .c-card__hed'
-  },  
-  {
-    name: 'belt4',
-    selector: 'article.c-card--:nth-child(4) .c-card__hed'
-  },  
-  {
-    name: 'doublewide',
+    name: 'Doublewide',
     selector: '.c-feature .c-feature__hed-link'
   },
   {
-    name: 'chiclet1',
-    selector: 'article.c-story-strip--off-off-lede-stack:nth-child(1) .c-story-strip__hed-link'
+    name: 'Chicklet',
+    selector: 'article.c-story-strip--off-off-lede-stack .c-story-strip__hed-link'
   },
   {
-    name: 'chiclet2',
-    selector: 'article.c-story-strip--off-off-lede-stack:nth-child(2) .c-story-strip__hed-link'
-  },
-  {
-    name: 'chiclet3',
+    name: 'Chicklet 3',
     selector: 'article.c-story-strip--bottom-stack .c-story-strip__hed-link'
   }
 ]  
@@ -92,7 +60,7 @@ async.series([
   
   // Loop through areas of interest and query against Mongo
   function(nextStep){
-    async.each(positions, function(position, nextPosition){
+    async.eachSeries(positions, function(position, nextPosition){
       
       // Some of these positions have different spots, so we need to loop through them too
       async.eachOf( $(position.selector), function(subposition, i, nextSubposition){

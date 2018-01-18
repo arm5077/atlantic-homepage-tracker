@@ -1,16 +1,14 @@
 import * as d3 from 'd3';
 import moment from 'moment-timezone'
+import firstBy from 'thenby';
 import '../sass/styles.scss'
 
-
-const preferred_order = ['lead', 'offlead', 'filmstrip', 'featured'];
+const preferred_order = ['Lead', 'Offlead', 'Filmstrip', 'Belt', 'Doublewide', 'Chicklet', 'Chicklet 3'];
 
 // See if URL has a date parameter
 var thisDate = getURLParameter('date') || moment().format("Y-MM-DD");
 
 var dateParameter = (getURLParameter('date')) ? '?date=' + getURLParameter('date') : '';
-
-
 
 var content = d3.select('#content');
 var scale = d3.scaleTime()
@@ -56,9 +54,11 @@ function buildList(){
   d3.json('/api/day' + dateParameter, function(err, data){
     if(err) throw err;
   
-    data.sort(function(a,b){ return a.slot - b.slot });
-    data.sort(function(a,b){ return preferred_order.indexOf(a.name) - preferred_order.indexOf(b.name) });
-  
+    data.sort(
+      firstBy(function(a,b){ return preferred_order.indexOf(a.name) - preferred_order.indexOf(b.name) })
+      .thenBy(function(a,b){ return a.slot - b.slot })
+    );
+    
     // Build position sections
     var position = content.selectAll('.position')
       .data(data).enter()

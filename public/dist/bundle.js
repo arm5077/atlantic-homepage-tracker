@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 127);
+/******/ 	return __webpack_require__(__webpack_require__.s = 128);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1899,7 +1899,7 @@ function loadLocale(name) {
             module && module.exports) {
         try {
             oldLocale = globalLocale._abbr;
-            __webpack_require__(123)("./" + name);
+            __webpack_require__(124)("./" + name);
             // because defineLocale currently also sets the global locale, we
             // want to undo that for lazy loaded locales
             getSetGlobalLocale(oldLocale);
@@ -4534,7 +4534,7 @@ return hooks;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(126)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(127)(module)))
 
 /***/ }),
 /* 1 */
@@ -32492,8 +32492,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 /* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var moment = module.exports = __webpack_require__(122);
-moment.tz.load(__webpack_require__(121));
+var moment = module.exports = __webpack_require__(123);
+moment.tz.load(__webpack_require__(122));
 
 
 /***/ }),
@@ -32503,7 +32503,7 @@ moment.tz.load(__webpack_require__(121));
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(119);
+var content = __webpack_require__(120);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -32511,7 +32511,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(124)(content, options);
+var update = __webpack_require__(125)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -32529,9 +32529,68 @@ if(false) {
 
 /***/ }),
 /* 119 */
+/***/ (function(module, exports) {
+
+/***
+   Copyright 2013 Teun Duynstee
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+*/
+module.exports = (function() {
+
+    function identity(v){return v;}
+
+    function ignoreCase(v){return typeof(v)==="string" ? v.toLowerCase() : v;}
+
+    function makeCompareFunction(f, opt){
+        opt = typeof(opt)==="number" ? {direction:opt} : opt||{};
+        if(typeof(f)!="function"){
+            var prop = f;
+            // make unary function
+            f = function(v1){return !!v1[prop] ? v1[prop] : "";}
+        }
+        if(f.length === 1) {
+            // f is a unary function mapping a single item to its sort score
+            var uf = f;
+            var preprocess = opt.ignoreCase?ignoreCase:identity;
+            f = function(v1,v2) {return preprocess(uf(v1)) < preprocess(uf(v2)) ? -1 : preprocess(uf(v1)) > preprocess(uf(v2)) ? 1 : 0;}
+        }
+        if(opt.direction === -1) return function(v1,v2){return -f(v1,v2)};
+        return f;
+    }
+
+    /* adds a secondary compare function to the target function (`this` context)
+       which is applied in case the first one returns 0 (equal)
+       returns a new compare function, which has a `thenBy` method as well */
+    function tb(func, opt) {
+        var x = typeof(this) == "function" ? this : false;
+        var y = makeCompareFunction(func, opt);
+        var f = x ? function(a, b) {
+                        return x(a,b) || y(a,b);
+                    }
+                  : y;
+        f.thenBy = tb;
+        return f;
+    }
+    return tb;
+})();
+
+
+/***/ }),
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(120)(undefined);
+exports = module.exports = __webpack_require__(121)(undefined);
 // imports
 
 
@@ -32542,7 +32601,7 @@ exports.push([module.i, "body {\n  font-family: -apple-system, BlinkMacSystemFon
 
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports) {
 
 /*
@@ -32624,7 +32683,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -33229,7 +33288,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//! moment-timezone.js
@@ -33839,7 +33898,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -34088,10 +34147,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 123;
+webpackContext.id = 124;
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -34137,7 +34196,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(125);
+var	fixUrls = __webpack_require__(126);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -34450,7 +34509,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports) {
 
 
@@ -34545,7 +34604,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -34573,7 +34632,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34582,21 +34641,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_d3__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment_timezone__ = __webpack_require__(117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment_timezone__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sass_styles_scss__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sass_styles_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__sass_styles_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_thenby__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_thenby___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_thenby__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sass_styles_scss__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sass_styles_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__sass_styles_scss__);
 
 
 
 
 
-const preferred_order = ['lead', 'offlead', 'filmstrip', 'featured'];
+const preferred_order = ['Lead', 'Offlead', 'Filmstrip', 'Belt', 'Doublewide', 'Chicklet', 'Chicklet 3'];
 
 // See if URL has a date parameter
 var thisDate = getURLParameter('date') || __WEBPACK_IMPORTED_MODULE_1_moment_timezone___default()().format("Y-MM-DD");
 
 var dateParameter = (getURLParameter('date')) ? '?date=' + getURLParameter('date') : '';
-
-
 
 var content = __WEBPACK_IMPORTED_MODULE_0_d3__["select"]('#content');
 var scale = __WEBPACK_IMPORTED_MODULE_0_d3__["scaleTime"]()
@@ -34642,9 +34701,11 @@ function buildList(){
   __WEBPACK_IMPORTED_MODULE_0_d3__["json"]('/api/day' + dateParameter, function(err, data){
     if(err) throw err;
   
-    data.sort(function(a,b){ return a.slot - b.slot });
-    data.sort(function(a,b){ return preferred_order.indexOf(a.name) - preferred_order.indexOf(b.name) });
-  
+    data.sort(
+      __WEBPACK_IMPORTED_MODULE_2_thenby___default()(function(a,b){ return preferred_order.indexOf(a.name) - preferred_order.indexOf(b.name) })
+      .thenBy(function(a,b){ return a.slot - b.slot })
+    );
+    
     // Build position sections
     var position = content.selectAll('.position')
       .data(data).enter()
