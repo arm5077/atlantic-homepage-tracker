@@ -23,7 +23,7 @@ var positions = [
   },
   {
     name: 'Belt',
-    selector: 'article.c-card-- .c-card__hed'
+    selector: 'article.c-card-- .c-card__hed a'
   },   
   {
     name: 'Doublewide',
